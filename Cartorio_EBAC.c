@@ -1,22 +1,22 @@
-#include <stdio.h> //biblioteca de comunicaÁ„o com usu·rio
-#include <stdlib.h> //biblioteca de alocaÁ„o de espaÁo em memÛria
-#include <locale.h> //biblioteca de alocaÁıes de texto por regi„o
-#include <string.h> //biblioteca respons·vel por cuidar das string
+#include <stdio.h> //biblioteca de comunica√ß√£o com usu√°rio
+#include <stdlib.h> //biblioteca de aloca√ß√£o de espa√ßo em mem√≥ria
+#include <locale.h> //biblioteca de aloca√ß√µes de texto por regi√£o
+#include <string.h> //biblioteca respons√°vel por cuidar das string
 
-int registro() //FunÁ„o responsavel por registra os usu·rios no sistema
+int registro() //Fun√ß√£o responsavel por registra os usu√°rios no sistema
 {
-	//Inicio da criaÁ„o das vari·veis/string
+	//Inicio da cria√ß√£o das vari√°veis/string
 	char arquivo[40];
 	char cpf[40];
 	char nome[40];
 	char sobrenome[40];
 	char cargo[40];
-	//Final da criaÁ„o das vari·veis/string
+	//Final da cria√ß√£o das vari√°veis/string
 	
-	printf("Digite o CPF que deve ser cadastrado: "); //Coletando a informaÁ„o do usu·rio
+	printf("Digite o CPF que deve ser cadastrado: "); //Coletando a informa√ß√£o do usu√°rio
     scanf("%s", cpf); //%s refere-se a string
     
-    strcpy(arquivo, cpf); //Respons·vel por copiar o valor das string
+    strcpy(arquivo, cpf); //Respons√°vel por copiar o valor das string
     
     FILE *file; //cria o arquivo no banco de dados
     file = fopen(arquivo, "w"); //Cria o arquivo e o "w" significa escrever
@@ -61,11 +61,11 @@ int registro() //FunÁ„o responsavel por registra os usu·rios no sistema
 
 }
 
-int consulta() //FunÁ„o para consultar nomes
+int consulta() //Fun√ß√£o para consultar nomes
 {
 	setlocale(LC_ALL,"Portuguese"); //Definindo a Liguagem que vai ser utilizada
 	
-	//Inicio das funÁıes
+	//Inicio das fun√ß√µes
 	char cpf[40];
 	char conteudo[40];
 	
@@ -77,30 +77,30 @@ int consulta() //FunÁ„o para consultar nomes
 	
 	if(file == NULL)
 	{
-		printf("N„o foi possÌvel abrir o arquivo. \n"); //Aparece quando a seleÁ„o n„o se encontra no Menu/sistema!
+		printf("N√£o foi poss√≠vel abrir o arquivo. \n"); //Aparece quando a sele√ß√£o n√£o se encontra no Menu/sistema!
 	}
 	
 	while(fgets(conteudo, 200, file) != NULL)
 	{
-		printf("Essas s„o as informaÁıes dos usu·rios: ");
+		printf("Essas s√£o as informa√ß√µes dos usu√°rios: ");
 		printf("%s", conteudo);
 		printf("\n\n");
 	}
-	//Fim das funÁıes
+	//Fim das fun√ß√µes
 	system("pause");
 	
 	
 }
 
-int deletar() //FunÁ„o para deletar nomes
+int deletar() //Fun√ß√£o para deletar nomes
 {
-	//Inicio da funÁ„o Deletar nomes do Banco de Dados
+	//Inicio da fun√ß√£o Deletar nomes do Banco de Dados
 	char cpf[40];
 	
-	printf("Digite o CPF do usu·rio a ser deletado: "); //Identificar CPF para ser deletado
+	printf("Digite o CPF do usu√°rio a ser deletado: "); //Identificar CPF para ser deletado
 	scanf("%s",cpf);
 	
-	remove("cpf"); //InformaÁıes a ser removida!
+	remove("cpf"); //Informa√ß√µes a ser removida!
 	
 	FILE *file;
 	file = fopen(cpf, "r");
@@ -108,66 +108,78 @@ int deletar() //FunÁ„o para deletar nomes
 	
 	if(file == NULL)
 	{
-		printf("O usu·rio foi deletado com sucesso!.\n"); //NotificaÁ„o de que o CPF foi deletado!
+		printf("O usu√°rio foi deletado com sucesso!.\n"); //Notifica√ß√£o de que o CPF foi deletado!
 		system ("pause");
 	}
-	//Fim da funÁ„o Deletar nomes do Banco de Dados
+	//Fim da fun√ß√£o Deletar nomes do Banco de Dados
 
 }
 
 
 int main()
-{
-	
-	int opcao=0; //Definindo as vari·veis
-	int laco=1;
-	
-	for(laco=1;laco=1;)
 	{
+	int opcao=0; //Definindo as vari√°veis
+	int laco=1;
+	char senhadigitada[10]="a";
+	int comparacao;
+	
+	
+	printf("#### Cart√≥rio da EBAC ####\n\n");
+	printf("Login de Administrador!\n\nDigite sua senha: ");
+	scanf("%s",senhadigitada);
+	
+	comparacao = strcmp(senhadigitada, "admin");
+	
+	if(comparacao == 0)
+	{
+		system ("cls");
+		for(laco=1;laco=1;)
+		{
 		
-       system("cls"); //Responsavel por limpar a tela
+			
+	   		setlocale(LC_ALL,"Portuguese"); //Definindo a Liguagem que vai ser utilizada
+			
+	   		printf("#### Cart√≥rio da EBAC ####\n\n"); // Inicio do menu
+	   		printf("Escolha a op√ß√£o desejada do menu: \n\n");
+	   		printf("\t1 - Registrar nomes\n");
+	   		printf("\t2 - Consultar nomes\n");
+	   		printf("\t3 - Deletar nomes\n");
+	   		printf("\t4 - Sair do Sistema\n\n");
+	   		printf("\n");
+	   		printf("Op√ß√£o: "); // Fim do menu
+			
+	   		scanf("%d", &opcao); //Op√ß√µes de Sele√ß√£o do menu 
+			
+       		system("cls");
+       		
+       		
+       		  switch(opcao) //Abaixo temos as 3 op√ß√µes para o menu, e uma caso aconte√ßa algum erro na sele√ß√£o
+        	{
+            	case 1:
+            	registro(); //Chamada de fun√ß√µes
+            	break;
+       	 		
+        		case 2:
+        		consulta(); 
+    	    	break;
+    	    	
+    	    	case 3:
+    	    	deletar();
+    	    	break;
+    	    	
+    	    	case 4:
+    	    	printf("Obrigado por utilizar o sistema!\n");
+    	    	return 0;
+    	    	break;
+    	    	
+    	    	default:
+    	    	printf(" Op√ß√£o invalida!\n\n ");
+		    	system("pause");
+		    	break;    
+	    	} //Fim da sele√ß√µes
+		} 
+	}
 
-	   setlocale(LC_ALL,"Portuguese"); //Definindo a Liguagem que vai ser utilizada
-	
-	   printf("#### CartÛrio da EBAC ####\n\n"); // Inicio do menu
-	   printf("Escolha a opÁ„o desejada do menu: \n\n");
-	   printf("\t1 - Registrar nomes\n");
-	   printf("\t2 - Consultar nomes\n");
-	   printf("\t3 - Deletar nomes\n");
-	   printf("\t4 - Sair do Sistema\n");
-	   printf("\n");
-	   printf("OpÁ„o: "); // Fim do menu
-	
-	   scanf("%d", &opcao); //OpÁıes de SeleÁ„o do menu 
-	
-       system("cls");
-       
-       
-       switch(opcao) //Abaixo temos as 3 opÁıes para o menu, e uma caso aconteÁa algum erro na seleÁ„o
-        {
-            case 1:
-            registro(); //Chamada de funÁıes
-            break;
-       	 	
-        	case 2:
-        	consulta(); 
-    	    break;
-    	    
-    	    case 3:
-    	    deletar();
-    	    break;
-    	    
-    	    case 4:
-    	    printf("Obrigado por utilizar o Sistema\n");
-    	    return 0;
-    	    break;
-    	    
-    	    default:
-    	    printf(" OpÁ„o invalida!\n\n ");
-		    system("pause");
-		    break;    
-	    } //Fim das 3 seleÁıes
-       
-	} //Fim da seleÁ„o
-	
+	else
+		printf("Senha incorreta!");
 }
